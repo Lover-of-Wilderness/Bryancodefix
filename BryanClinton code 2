@@ -12829,34 +12829,66 @@ campaignTrail_temp.candidate_image_url = "https://i.imgur.com/SpLdvVD.pngwidth=3
 campaignTrail_temp.running_mate_image_url = "https://i.imgur.com/NGG8MgO.png";
 campaignTrail_temp.candidate_last_name = "Bryan";
 campaignTrail_temp.running_mate_last_name = "Clinton";
-
-campaignTrail_temp.multiple_endings = true;
+e = campaignTrail_temp;
 endingPicker = (out, totv, aa, quickstats) => {
 
-    function setImage(url) {
-        if(url == '' || url == null) return;
-        let interval = setInterval(function () {
-            img = document.getElementsByClassName("person_image")[0];
-            if (img != null) {
-                img.src = url;
-                clearInterval(interval);
+    //Ending Codes go here. You can remove this line, but everything else must be kept. Just paste this at the end of your code 2.
+    used=false;
+    orderID = [aa[0].candidate, aa[1].candidate];
+    playerID = campaignTrail_temp.candidate_id;
+    playerEV = quickstats[0]
+        //out = "win", "loss", or "tie" for your candidate
+        //totv = total votes in entire election
+        //aa = all final overall results data
+        if (out == "tie") {
+            if (used != true) {
+                setInterval(function () {
+                    used = true;
+                    imgg = document.getElementsByClassName("person_image")[0];
+                    if (imgg != null) {
+                        imgg.src = "https://i.imgur.com/QyzczUe.jpeg";
+                    }
+                }, 100);
             }
-        }, 50);
+    return "<h3>Playing Politics</h3><p>What should have been a great victory has become a pathetic game of politics. The Democrats have won both chambers of Congress, and you do have Republican crossover appeal, but even if you will be President, you wonder why it had to be like this. Why has God punished you so? Why do you have to be stuck playing politics?"
+    } else if (quickstats[0] >= 270) {
+        if (used != true) {
+            setInterval(function () {
+                used = true;
+                imgg = document.getElementsByClassName("person_image")[0];
+                if (imgg != null) {
+                    imgg.src = "https://i.imgur.com/7x4VaiO.jpeg";
+                }
+            }, 100);
+        }
+    return "<h3>Heaven</h3><p>You have done it, William. You have finished a journey that began one hundred and twelve years ago. You are finally President of the United States of America. Ordained by our Heavenly Father above, your victory was nothing but certain from the start, but that does not take away from the glee you feel in this moment. Now, after all this time you can bring your agenda forth, an agenda of sympathy and Godliness, one that will bring true greatness to America. As you look into the heavens above on the morning after Election Day, you are nothing but grateful. “Thank you, God,” you say. “Thank you.”"
+} else if (quickstats[0] <= 268) {
+    if (used != true) {
+        setInterval(function () {
+            used = true;
+            imgg = document.getElementsByClassName("person_image")[0];
+            if (imgg != null) {
+                imgg.src = "https://i.imgur.com/kCbC3aE.jpeg";
+            }
+        }, 100);
     }
-
-    if(quickstats[0] > 1) {
-        setImage("");
-        return `ending for taking the huge bonus support called hell. Ending for 0 called rock bottom.`;
+    return "<h3>Purgatory</h3><p>Even with God by your side, you have failed. This was your moment, but somehow, against that McKinley copycat McCain, you have faltered again. What will this mean for you? You don’t know. Surly if you failed, it must have been God’s Plan. But then why did he send you to Earth in the first place? What was this all for? Has the Devil finally gained control over Earth? Is all hope lost? The morning after the Election, you are greeted by a familiar face. “Please Azrael, take me back. I am ready.”"
+} else if ((e.player_answers.includes(20703))) {
+    if (used != true) {
+        setInterval(function () {
+            used = true;
+            imgg = document.getElementsByClassName("person_image")[0];
+            if (imgg != null) {
+                imgg.src = "https://i.imgur.com/Q3C35IA.jpeg";
+            }
+        }, 100);
     }
-    if(quickstats[0] < 100) {
-        setImage("");
-        return `Put ending text here, you can and should use <p>HTML tags</p>!
-
-poo`;
+    return "<h3>Hell - October 3078</h3><p>William’s eyes opened for what felt like the billionth time. Again, he was summoned to the King of King's room, the Chessmaster. Maybe today would be the day that he'd be able to return to Heaven? Maybe today he would win? But he knew better. It was all a ruse. A ruse to punish him. After the walk that never ended escorted by the man with six wings, he finally arrived. There William would encounter a man he had encountered as many times as he had opened his eyes. “Come,” said the Chessmaster, the King of Kings. So William went so that he could finally win that game of chess. William went first, then the Chessmaster. After only a few short turns, the Chessmaster won, as he had as many times as William had opened his eyes. “Again?” said the Chessmaster. William had no choice. “Again,” he said. “Again.”"
+  } else {
+    return "<h3>something broke</h3>uh oh"
+  }
     }
-}
-
-
+    campaignTrail_temp.multiple_endings=true
 campaignTrail_temp.jet_data = [{
     "nicknames": {
         "200": "McCain",
@@ -12875,80 +12907,3 @@ campaignTrail_temp.jet_data = [{
     "ending_data": {}
     }
 ]
-endingPicker = (out, totv, aa, quickstats) => {
-
-used=false
-
-// Astro's Ending Template
-
-// Template 2 - 1v1 races, with ending (or endings) based on specific answer
-
-//out = "win", "loss", or "tie" for your candidate
-//totv = total votes in entire election
-//aa = all final overall results data
-//quickstats = relevant data on candidate performance (format: your candidate's electoral vote count, your candidate's popular vote share, your candidate's raw vote total)
-
-//quickstats[0] is the default, and it tracks your electoral vote count.
-
-// player_answers starts counting at 0, so it's checking for the answer on Question 25 here. 
-
-// If answer for question 25 is 8090, and you get at least 270 Electoral votes, and your running mate's last name is specified here, it'll give you this special ending. I used this for the 'A truce, not a compromise' ending in 1876.
-
-if (campaignTrail_temp.player_answers[24] == 8090 && quickstats[0] >= 270 && campaignTrail_temp.running_mate_last_name == "PlaceLastNameHere") {
-  //If you want to enable replacing the image based upon your performance, copy from here....
-    if (used != true) {
-        setInterval(function () {
-            used = true;
-            imgg = document.getElementsByClassName("person_image")[0];
-            if (imgg != null) {
-                imgg.src = "Image URL goes here.";
-            }
-        }, 100);
-    }
-    // to here!
-   return "<h3>Special Ending!</h3><p>Did you do something? Sell out the nation? Make a deal with the devil? and Win? This ending's for you.</p>";
-} else if (campaignTrail_temp.player_answers[24] == 8090 && quickstats[0]<269 && campaignTrail_temp.running_mate_last_name == "PlaceLastNameHere") {
-  //If you want to enable replacing the image based upon your performance, copy from here....
-    if (used != true) {
-        setInterval(function () {
-            used = true;
-            imgg = document.getElementsByClassName("person_image")[0];
-            if (imgg != null) {
-                imgg.src = "Image URL goes here.";
-            }
-        }, 100);
-    }
-    // to here!
-return "<h3>Special Ending!</h3><p>Did you do something? Sell out the nation? Make a deal with the devil? and Win? This ending's for you.</p>"
-} else if (quickstats[0] < 3) {
-return "<h3>You didn't even win a state?</h3><p>Very sad!</p><p>It seems like your opponent has won in a landslide, and has the political leverage to enact their agenda. Sorry!</p>"
-} else if (quickstats[0] >= 3 && quickstats[0]<110) {
-return "<h3>It seems you have lost in a landslide.</h3><p>Very sad!</p><p>It seems like your opponent has won in a landslide, and has the political leverage to enact their agenda. Sorry!</p>"
-} else if (quickstats[0] >= 110 && quickstats[0]<269) {
-return "<h3>Sorry, you have lost the election.</h3><p>Very sad!</p><p>It seems like your opponent has won in a landslide, and has the political leverage to enact their agenda. Sorry!</p>"
-} else if (quickstats[0] == 269) {
-return "<h3>A tie?</h3><p>Weird. The House may or may not choose you.</p>"
-} else if (quickstats[0] >= 270 && quickstats[0]<350) {
-return "<h3>Congratulations! You have won the election!</h3><p>This is possibly expected (or maybe it isn't).</p><p>You will be able to enact your agenda.</p>"
-} else if (quickstats[0] >= 350 && quickstats[0]<531) {
-return "<h3>Congratulations! You have won the election!</h3><p>This is possibly expected (or maybe it isn't).</p><p>You will be able to enact your agenda.</p>"
-} else if (quickstats[0] >= 531) {
-  //If you want to enable replacing the image based upon your performance, copy from here....
-    if (used != true) {
-        setInterval(function () {
-            used = true;
-            imgg = document.getElementsByClassName("person_image")[0];
-            if (imgg != null) {
-                imgg.src = "Image URL goes here.";
-            }
-        }, 100);
-    }
-    // to here!
-return "<h3>Congratulations! You have won the election!</h3><p>This is possibly expected (or maybe it isn't).</p><p>You will be able to enact your agenda.</p>"
-} else {
-return "<h3>That's odd. The mod seems broken.</h3><p>Contact the creator of the mod. Congrats if you won, better luck next time if you lost.</p>"
-}
-
-}
-
-campaignTrail_temp.multiple_endings=true
