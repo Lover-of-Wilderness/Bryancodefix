@@ -12851,7 +12851,18 @@ endingPicker = (out, totv, aa, quickstats) => {
                 }, 100);
             }
     return "<h3>Playing Politics</h3><p>What should have been a great victory has become a pathetic game of politics. The Democrats have won both chambers of Congress, and you do have Republican crossover appeal, but even if you will be President, you wonder why it had to be like this. Why has God punished you so? Why do you have to be stuck playing politics?"
-    } else if (quickstats[0] >= 270) {
+} else if ((e.player_answers.includes(20703))) {
+    if (used != true) {
+        setInterval(function () {
+            used = true;
+            imgg = document.getElementsByClassName("person_image")[0];
+            if (imgg != null) {
+                imgg.src = "https://i.imgur.com/Q3C35IA.jpeg";
+            }
+        }, 100);
+    }
+    return "<h3>Hell - October 3078</h3><p>William’s eyes opened for what felt like the billionth time. Again, he was summoned to the King of King's room, the Chessmaster. Maybe today would be the day that he'd be able to return to Heaven? Maybe today he would win? But he knew better. It was all a ruse. A ruse to punish him. After the walk that never ended escorted by the man with six wings, he finally arrived. There William would encounter a man he had encountered as many times as he had opened his eyes. “Come,” said the Chessmaster, the King of Kings. So William went so that he could finally win that game of chess. William went first, then the Chessmaster. After only a few short turns, the Chessmaster won, as he had as many times as William had opened his eyes. “Again?” said the Chessmaster. William had no choice. “Again,” he said. “Again.”"
+} else if (quickstats[0] >= 270) {
         if (used != true) {
             setInterval(function () {
                 used = true;
@@ -12873,17 +12884,6 @@ endingPicker = (out, totv, aa, quickstats) => {
         }, 100);
     }
     return "<h3>Purgatory</h3><p>Even with God by your side, you have failed. This was your moment, but somehow, against that McKinley copycat McCain, you have faltered again. What will this mean for you? You don’t know. Surly if you failed, it must have been God’s Plan. But then why did he send you to Earth in the first place? What was this all for? Has the Devil finally gained control over Earth? Is all hope lost? The morning after the Election, you are greeted by a familiar face. “Please Azrael, take me back. I am ready.”"
-} else if ((e.player_answers.includes(20703))) {
-    if (used != true) {
-        setInterval(function () {
-            used = true;
-            imgg = document.getElementsByClassName("person_image")[0];
-            if (imgg != null) {
-                imgg.src = "https://i.imgur.com/Q3C35IA.jpeg";
-            }
-        }, 100);
-    }
-    return "<h3>Hell - October 3078</h3><p>William’s eyes opened for what felt like the billionth time. Again, he was summoned to the King of King's room, the Chessmaster. Maybe today would be the day that he'd be able to return to Heaven? Maybe today he would win? But he knew better. It was all a ruse. A ruse to punish him. After the walk that never ended escorted by the man with six wings, he finally arrived. There William would encounter a man he had encountered as many times as he had opened his eyes. “Come,” said the Chessmaster, the King of Kings. So William went so that he could finally win that game of chess. William went first, then the Chessmaster. After only a few short turns, the Chessmaster won, as he had as many times as William had opened his eyes. “Again?” said the Chessmaster. William had no choice. “Again,” he said. “Again.”"
   } else {
     return "<h3>something broke</h3>uh oh"
   }
